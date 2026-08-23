@@ -48,6 +48,23 @@ function toast(msg) {
   setTimeout(() => t.classList.remove('show'), 2600);
 }
 
+// Pasek "Cofnij" (jak w IBP/PPOŻ, wzorem Gmaila/Plikow Google) — akcja wykonuje
+// sie od razu, ale przez 6 sek. mozna ja cofnac zamiast pytac "na pewno?".
+let snackbarTimer = null;
+function showSnackbar(message, onUndo) {
+  clearTimeout(snackbarTimer);
+  const bar = document.getElementById('snackbar');
+  document.getElementById('snackbarMsg').textContent = message;
+  const undoBtn = document.getElementById('snackbarUndo');
+  undoBtn.onclick = () => {
+    clearTimeout(snackbarTimer);
+    bar.classList.remove('show');
+    onUndo();
+  };
+  bar.classList.add('show');
+  snackbarTimer = setTimeout(() => bar.classList.remove('show'), 6000);
+}
+
 function blobToBase64(blob) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -202,9 +219,12 @@ function initMap() {
   markerLayer = L.layerGroup().addTo(map);
 
   map.on('click', (e) => {
-    const px = e.latlng.lng;
-    const py = h - e.latlng.lat;
-    pendingPoint = { x: px / w, y: py / h };
+    const nearby = findNearbyPlants(e.latlng);
+    if (nearby.length > 0) {
+      showNearbyPicker(nearby, e.latlng);
+      return;
+    }
+    pendingPoint = latLngToXY(e.latlng);
     editingId = null;
     openSheet('add');
   });
@@ -215,6 +235,67 @@ function pxToLatLng(u, v) {
   const px = u * w, py = v * h;
   return [h - py, px];
 }
+
+function latLngToXY(latlng) {
+  const w = planMeta.width, h = planMeta.height;
+  return { x: latlng.lng / w, y: (h - latlng.lat) / h };
+}
+
+// Klikniecia bardzo blisko istniejacych punktow (albo dokladnie w nakladajace
+// sie markery) sa niejednoznaczne — zamiast zgadywac, pokazujemy liste do wyboru.
+const NEARBY_PX_THRESHOLD = 22;
+function findNearbyPlants(latlng) {
+  if (!map) return [];
+  const clickPt = map.latLngToContainerPoint(latlng);
+  return plantsCache
+    .map((p) => ({ plant: p, dist: clickPt.distanceTo(map.latLngToContainerPoint(pxToLatLng(p.x, p.y))) }))
+    .filter((o) => o.dist <= NEARBY_PX_THRESHOLD)
+    .sort((a, b) => a.dist - b.dist)
+    .map((o) => o.plant);
+}
+
+function showNearbyPicker(plants, latlng) {
+  const content = document.getElementById('pickerContent');
+  const wrap = document.createElement('div');
+  wrap.className = 'nearby-picker';
+  const h3 = document.createElement('h3');
+  h3.textContent = plants.length > 1 ? 'Kilka roślin blisko siebie' : 'Blisko istniejącej rośliny';
+  const d = document.createElement('div');
+  d.className = 'd';
+  d.style.marginBottom = '10px';
+  d.textContent = 'Wybierz, którą roślinę masz na myśli, albo dodaj nową dokładnie tutaj.';
+  wrap.append(h3, d);
+  plants.forEach((plant) => {
+    const sp = speciesDB[plant.species] || { name: plant.species };
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.innerHTML = `<span class="ic">${sp.icon || '🌱'}</span><span class="lbl">${sp.name}${plant.custom_name ? '<small>' + plant.custom_name + '</small>' : ''}</span>`;
+    btn.onclick = () => { closePicker(); showPlantDetail(plant); };
+    wrap.appendChild(btn);
+  });
+  const addBtn = document.createElement('button');
+  addBtn.type = 'button';
+  addBtn.className = 'add-new';
+  addBtn.textContent = '➕ Dodaj nową roślinę tutaj';
+  addBtn.onclick = () => {
+    closePicker();
+    pendingPoint = latLngToXY(latlng);
+    editingId = null;
+    openSheet('add');
+  };
+  wrap.appendChild(addBtn);
+  content.innerHTML = '';
+  content.appendChild(wrap);
+  document.getElementById('pickerOverlay').classList.add('show');
+}
+
+function closePicker() {
+  document.getElementById('pickerOverlay').classList.remove('show');
+}
+
+document.getElementById('pickerOverlay').addEventListener('click', (e) => {
+  if (e.target.id === 'pickerOverlay') closePicker();
+});
 
 async function loadPlants() {
   const db = await dbPromise;
@@ -237,21 +318,90 @@ function updatePill() {
   txt.textContent = `${plantsCache.length} pozycji · ${count} szt.`;
 }
 
+// Rosliny z oryginalnego projektu OMI studio (maja numer "lp" w bazie) dostaja
+// zloty pierscien wokol ikony — odroznia je od wlasnych/warzywnych dosadzen,
+// niezaleznie od koloru wypelnienia (ktory dalej oznacza strefe podlewania).
+const PROJECT_RING_COLOR = '#d4af37';
+
 function renderMarkers() {
   if (!markerLayer) return;
   markerLayer.clearLayers();
   plantsCache.forEach((plant) => {
     const sp = speciesDB[plant.species] || {};
     const zoneMeta = ZONE_META[plant.zone] || ZONE_META.reczne;
+    const isProjectPlant = sp.lp !== undefined;
+    const ringColor = isProjectPlant ? PROJECT_RING_COLOR : '#fff';
     const icon = L.divIcon({
-      html: `<div class="plant-marker" style="--zone-color:${zoneMeta.color}">${sp.icon || '🌱'}</div>`,
+      html: `<div class="plant-marker${isProjectPlant ? ' project' : ''}" style="--zone-color:${zoneMeta.color};--ring-color:${ringColor}">${sp.icon || '🌱'}<div class="marker-unlock-dot"></div></div>`,
       className: 'plant-div-icon',
       iconSize: [36, 36],
       iconAnchor: [18, 18],
     });
-    const marker = L.marker(pxToLatLng(plant.x, plant.y), { icon });
-    marker.on('click', (e) => { L.DomEvent.stopPropagation(e); showPlantDetail(plant); });
+    const marker = L.marker(pxToLatLng(plant.x, plant.y), { icon, draggable: false });
+
+    // Przesuwanie punktu wymaga przytrzymania 3 sek. (jak w app IBP/PPOŻ) —
+    // chroni przed przypadkowym przesunieciem przy zwyklym tapnieciu, ktore
+    // otwiera szczegoly rosliny. Podwojny klik ponownie blokuje przesuwanie.
+    let longPressTimer = null;
+    const cancelLongPress = () => {
+      if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null; }
+    };
+    const setUnlockedVisual = (on) => {
+      const el = marker.getElement();
+      const dot = el && el.querySelector('.marker-unlock-dot');
+      if (dot) dot.style.display = on ? 'block' : 'none';
+      const badge = el && el.querySelector('.plant-marker');
+      if (badge) badge.classList.toggle('unlocked', on);
+    };
+    let justUnlocked = false;
+    const unlockDrag = () => {
+      marker.dragging.enable();
+      setUnlockedVisual(true);
+      justUnlocked = true; // tlumi "widmowy" klik ktory Leaflet i tak wysyla po puszczeniu
+      if (navigator.vibrate) navigator.vibrate(50);
+    };
+    const lockDrag = () => {
+      cancelLongPress();
+      marker.dragging.disable();
+      setUnlockedVisual(false);
+    };
+
+    marker.on('click', (e) => {
+      L.DomEvent.stopPropagation(e);
+      if (justUnlocked) { justUnlocked = false; return; }
+      const nearby = findNearbyPlants(marker.getLatLng());
+      if (nearby.length > 1) showNearbyPicker(nearby, marker.getLatLng());
+      else showPlantDetail(plant);
+    });
+    marker.on('dblclick', (e) => { L.DomEvent.stopPropagation(e); lockDrag(); });
+    marker.on('dragend', async () => {
+      justUnlocked = false;
+      const { x, y } = latLngToXY(marker.getLatLng());
+      const db = await dbPromise;
+      const rec = await db.get('plants', plant.id);
+      if (rec) {
+        rec.x = x; rec.y = y; rec.updated_at = new Date().toISOString();
+        await db.put('plants', rec);
+      }
+      lockDrag();
+      toast('Roślina przesunięta');
+      await loadPlants();
+    });
+
     marker.addTo(markerLayer);
+    const el = marker.getElement();
+    if (el) {
+      el.style.webkitTouchCallout = 'none';
+      el.style.userSelect = 'none';
+      el.addEventListener('pointerdown', () => {
+        cancelLongPress();
+        longPressTimer = setTimeout(() => { longPressTimer = null; unlockDrag(); }, 3000);
+      });
+      el.addEventListener('pointerup', cancelLongPress);
+      el.addEventListener('pointercancel', cancelLongPress);
+      el.addEventListener('pointerleave', cancelLongPress);
+      el.addEventListener('contextmenu', (e) => e.preventDefault());
+    }
   });
 }
 
@@ -295,7 +445,7 @@ function buildDetailHtml(plant) {
     <div class="actions">
       <button class="edit">Edytuj</button>
       ${plant.photo ? '<button class="ai">Analizuj AI</button>' : ''}
-      <button class="del">Usuń</button>
+      <button class="del">🧺 Do magazynu</button>
     </div>
   `;
   div.querySelector('.edit').onclick = () => { editingId = plant.id; openSheet('edit', plant); closeDetail(); };
@@ -321,12 +471,19 @@ document.getElementById('detailOverlay').addEventListener('click', (e) => {
 });
 
 async function deletePlant(id) {
-  if (!confirm('Usunąć tę roślinę z planu?')) return;
   const db = await dbPromise;
+  const snapshot = await db.get('plants', id);
+  if (!snapshot) return;
   await db.delete('plants', id);
   closeDetail();
-  toast('Usunięto');
   await loadPlants();
+  showSnackbar('Roślina przeniesiona do magazynu', async () => {
+    const clone = { ...snapshot };
+    delete clone.id;
+    await db.add('plants', clone);
+    await loadPlants();
+    toast('Przywrócono');
+  });
 }
 
 // ---------------------------------------------------------------- AI (Gemini, bezposrednio z przegladarki)
@@ -472,8 +629,13 @@ document.getElementById('analyzeFormBtn').addEventListener('click', async () => 
       document.getElementById('fSpecies').value = parsed.klucz;
     } else {
       document.getElementById('fSpecies').value = 'inne';
-      const nameField = document.getElementById('fCustomName');
-      if (!nameField.value) nameField.value = parsed.gatunek || '';
+    }
+    // Tytul/opis wlasny wypelniamy zawsze gdy pusty, niezaleznie od dopasowania —
+    // krotki opis AI ("opis") jest lepszym domyslnym tytulem niz sama nazwa gatunku.
+    const nameField = document.getElementById('fCustomName');
+    if (!nameField.value) {
+      const short = (parsed.opis || parsed.gatunek || '').trim();
+      nameField.value = short.length > 70 ? short.slice(0, 70) + '…' : short;
     }
     updateCareBox();
     const notesField = document.getElementById('fNotes');
@@ -545,7 +707,7 @@ function renderPlantTable() {
     editBtn.textContent = 'Edytuj';
     editBtn.onclick = () => { editingId = plant.id; openSheet('edit', plant); };
     const delBtn = document.createElement('button');
-    delBtn.textContent = 'Usuń';
+    delBtn.textContent = '🧺 Do magazynu';
     delBtn.onclick = () => deletePlant(plant.id);
     actionsTd.append(editBtn, delBtn);
     tbody.appendChild(tr);
