@@ -1,0 +1,288 @@
+{
+  "brzoza_pienna": {
+    "icon": "🌳", "lp": 1, "name": "Brzoza pożyteczna 'Doorenbos' (forma pienna)", "latin": "Betula utilis 'Doorenbos'",
+    "qty_plan": 3, "sun": "słońce / półcień", "water_tier": "wysokie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Płytki system korzeniowy — regularne, obfite podlewanie w suszę (nie dopuścić do przesychania), szczególnie pierwsze 2-3 sezony po nasadzeniu.",
+    "critical_phase": "Lato, pierwsze 2-3 lata po posadzeniu — brzozy źle znoszą deficyt wody, więdną i przedwcześnie żółkną liście.",
+    "notes": "Grube ściółkowanie wokół pnia ogranicza parowanie. Forma pienna (jeden pień, korona na szczycie).",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "brzoza_wielopniowa": {
+    "icon": "🌳", "lp": 2, "name": "Brzoza pożyteczna 'Doorenbos' (forma wielopniowa)", "latin": "Betula utilis 'Doorenbos'",
+    "qty_plan": 2, "sun": "słońce / półcień", "water_tier": "wysokie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Jak forma pienna — regularne, obfite podlewanie, płytkie korzenie wrażliwe na suszę.",
+    "critical_phase": "Lato, pierwsze 2-3 lata po posadzeniu.",
+    "notes": "Forma wielopniowa (kilka pni z jednej bryły korzeniowej) — efektowniejsza, ale każdy pień rozprowadza wodę osobno, nie oszczędzać na dawce.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "grab_fastigiata": {
+    "icon": "🌳", "lp": 3, "name": "Grab pospolity 'Fastigiata'", "latin": "Carpinus betulus 'Fastigiata'",
+    "qty_plan": 3, "sun": "słońce / półcień", "water_tier": "srednie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Regularnie pierwsze 2 sezony do ukorzenienia, potem odporny na okresową suszę.",
+    "critical_phase": "Pierwszy rok po posadzeniu.",
+    "notes": "Odmiana kolumnowa (wąska, wzniesiona korona) — często sadzona jako żywopłot formowany lub akcent architektoniczny.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "sosna_wielopniowa": {
+    "icon": "🌲", "lp": 4, "name": "Sosna czarna (forma wielopniowa)", "latin": "Pinus nigra",
+    "qty_plan": 1, "sun": "pełne słońce", "water_tier": "niskie", "zone_hint": "reczne",
+    "water": "Bardzo odporna na suszę po ukorzenieniu (1-2 sezony) — potem podlewać tylko w długotrwałej suszy.",
+    "critical_phase": "Pierwszy sezon po posadzeniu.",
+    "notes": "Wrażliwa na przelanie (gnicie korzeni) bardziej niż na suszę — gleba musi dobrze odsączać wodę.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "sosna_pienna": {
+    "icon": "🌲", "lp": 5, "name": "Sosna czarna (forma pienna)", "latin": "Pinus nigra",
+    "qty_plan": 5, "sun": "pełne słońce", "water_tier": "niskie", "zone_hint": "reczne",
+    "water": "Jak forma wielopniowa — bardzo oszczędnie po ukorzenieniu.",
+    "critical_phase": "Pierwszy sezon po posadzeniu.",
+    "notes": "Forma pienna — jeden prosty pień, korona formowana wyżej.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "choina_kanadyjska": {
+    "icon": "🌲", "lp": 6, "name": "Choina kanadyjska (odmiana stożkowata)", "latin": "Tsuga canadensis",
+    "qty_plan": 2, "sun": "półcień / cień", "water_tier": "wysokie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Lubi glebę stale wilgotną — źle znosi suszę i suchy, gorący wiatr. Podlewać regularnie, zwłaszcza latem.",
+    "critical_phase": "Upały i suche wiatry latem — igły brązowieją przy deficycie wody.",
+    "notes": "Preferuje stanowisko osłonięte od wiatru i słońca południowego. Ściółkować, żeby ograniczyć parowanie.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "swidosliwa": {
+    "icon": "🌳", "lp": 7, "name": "Świdośliwa Lamarcka", "latin": "Amelanchier lamarckii",
+    "qty_plan": 5, "sun": "słońce / półcień", "water_tier": "srednie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Regularnie pierwsze sezony, potem znosi krótkie okresy suszy.",
+    "critical_phase": "Kwitnienie (wiosna) i owocowanie — susza wtedy skraca kwitnienie/owocowanie.",
+    "notes": "Krzew/drzewko ozdobne — białe kwiaty wiosną, jadalne owoce, czerwone przebarwienie liści jesienią.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "swierk_klujacy": {
+    "icon": "🌲", "lp": 8, "name": "Świerk kłujący", "latin": "Picea pungens",
+    "qty_plan": 3, "sun": "pełne słońce", "water_tier": "srednie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Regularnie pierwsze 2-3 sezony, potem umiarkowanie — unikać zarówno suszy jak i podtapiania.",
+    "critical_phase": "Pierwsze lata po posadzeniu.",
+    "notes": "Wrażliwy na zastoiny wody przy korzeniach — dobry drenaż gleby konieczny.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "cis_pospolity": {
+    "icon": "🌲", "lp": 9, "name": "Cis pospolity", "latin": "Taxus baccata",
+    "qty_plan": 9, "sun": "cień / półcień / słońce", "water_tier": "srednie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Regularnie pierwsze 2 sezony do ukorzenienia, potem bardzo tolerancyjny na suszę.",
+    "critical_phase": "Pierwszy rok po posadzeniu.",
+    "notes": "Znosi niemal każde stanowisko (w tym pełny cień), ale nie znosi stojącej wody — dobry drenaż ważniejszy niż podlewanie. Całkowicie trujący dla ludzi i zwierząt (nasiona/igły) — uwaga przy dzieciach/zwierzętach w ogrodzie.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "oliwka": {
+    "icon": "🫒", "lp": 10, "name": "Oliwka europejska", "latin": "Olea europaea",
+    "qty_plan": 7, "sun": "pełne słońce", "water_tier": "niskie", "zone_hint": "reczne",
+    "water": "Bardzo oszczędnie — śródziemnomorska, nie znosi mokrych korzeni. Podlewać dopiero gdy podłoże wyraźnie przeschnie.",
+    "critical_phase": "Zima — w polskim klimacie NIE jest mrozoodporna.",
+    "notes": "\"Zabezpieczać na zimę\" (z projektu) — owinąć/okryć na zimę lub uprawiać w donicy z możliwością schowania. Gleba musi być przepuszczalna, w rowku/donicy z drenażem (korzenie giną przy przelaniu szybciej niż od suszy).",
+    "season_notes": {
+      "zima": "Zabezpieczyć przed mrozem (włóknina/okrycie lub przeniesienie w osłonięte miejsce) — wg opisu w projekcie."
+    },
+    "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "miskant": {
+    "icon": "🌾", "lp": 11, "name": "Miskant chiński 'Silberfeder'", "latin": "Miscanthus sinensis 'Silberfeder'",
+    "qty_plan": 31, "sun": "pełne słońce", "water_tier": "srednie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Regularnie pierwszy sezon do ukorzenienia (wysoka trawa, do 150 cm), potem odporny na suszę.",
+    "critical_phase": "Pierwszy sezon po posadzeniu.",
+    "notes": "Nie przycinać jesienią (dekoracyjne, suche kwiatostany zimą) — ciąć nisko dopiero wczesną wiosną przed odrostem.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "proso_rozgowate": {
+    "icon": "🌾", "lp": 12, "name": "Proso rózgowate 'Rehbraun'", "latin": "Panicum virgatum 'Rehbraun'",
+    "qty_plan": 50, "sun": "pełne słońce", "water_tier": "niskie", "zone_hint": "reczne",
+    "water": "Regularnie tylko pierwszy sezon, potem bardzo odporne na suszę (trawa preriowa).",
+    "critical_phase": "Pierwszy sezon po posadzeniu.",
+    "notes": "Odmiana do 80 cm, różowawe kwiatostany. Ciąć wczesną wiosną, nie jesienią.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "rozplenica": {
+    "icon": "🌾", "lp": 13, "name": "Rozplenica japońska 'Hameln'", "latin": "Pennisetum alopecuroides 'Hameln'",
+    "qty_plan": 15, "sun": "pełne słońce", "water_tier": "srednie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Regularnie pierwszy sezon, potem umiarkowanie — nie tak sucholubna jak proso rózgowate.",
+    "critical_phase": "Pierwszy sezon po posadzeniu.",
+    "notes": "Ciąć wczesną wiosną przed odrostem.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "lawenda": {
+    "icon": "🪻", "lp": 14, "name": "Lawenda wąskolistna", "latin": "Lavandula angustifolia",
+    "qty_plan": 11, "sun": "pełne słońce", "water_tier": "niskie", "zone_hint": "reczne",
+    "water": "Bardzo oszczędnie — przelanie zabija szybciej niż susza. Podlewać rzadko, dopiero gdy podłoże przeschnie, wymaga świetnego drenażu.",
+    "critical_phase": "Pierwszy sezon do ukorzenienia — potem prawie bez podlewania.",
+    "notes": "Nie ściółkować materiałem zatrzymującym wilgoć przy szyjce korzeniowej (ryzyko gnicia). Przycinać po kwitnieniu.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "macierzanka": {
+    "icon": "🌿", "lp": 15, "name": "Macierzanka wczesna 'Albiflorus'", "latin": "Thymus praecox 'Albiflorus'",
+    "qty_plan": 53, "sun": "pełne słońce", "water_tier": "niskie", "zone_hint": "reczne",
+    "water": "Okrywowa, bardzo sucholubna — podlewać oszczędnie, wymaga dobrego drenażu, nie znosi zastoin wody.",
+    "critical_phase": "Pierwsze tygodnie po posadzeniu (rozłożysta okrywa, potem samowystarczalna).",
+    "notes": "Białe kwiaty. Dobra jako okrywa między kamieniami/na skarpach — im więcej słońca, tym zwarciej rośnie.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "jalowiec": {
+    "icon": "🌲", "lp": 16, "name": "Jałowiec rozesłany", "latin": "Juniperus procumbens",
+    "qty_plan": 17, "sun": "pełne słońce", "water_tier": "niskie", "zone_hint": "reczne",
+    "water": "Bardzo odporny na suszę — podlewać tylko przy posadzeniu i w skrajnej suszy. Nie znosi \"mokrych nóg\".",
+    "critical_phase": "Pierwszy sezon po posadzeniu.",
+    "notes": "Odmiana karłowa, rozesłana, do ok. 1 m szerokości — okrywowy iglak na skarpy/rabaty słoneczne.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "hortensja_bukietowa": {
+    "icon": "🌸", "lp": 17, "name": "Hortensja bukietowa 'Polar Bear'", "latin": "Hydrangea paniculata 'Polar Bear'",
+    "qty_plan": 7, "sun": "słońce / półcień", "water_tier": "wysokie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Duże wymagania wodne, zwłaszcza w okresie kwitnienia (VII-IX) — gleba nie może przesychać, liście szybko więdną przy suszy.",
+    "critical_phase": "Lipiec-wrzesień (kwitnienie) — kluczowe utrzymanie wilgotności.",
+    "notes": "W przeciwieństwie do hortensji ogrodowej (macrophylla) znosi więcej słońca. Kwiaty różowieją z czasem. Grube ściółkowanie ogranicza parowanie.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "barwinek": {
+    "icon": "🍃", "lp": 18, "name": "Barwinek pospolity", "latin": "Vinca minor",
+    "qty_plan": 135, "sun": "półcień / cień", "water_tier": "srednie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Regularnie pierwszy sezon żeby szybko się rozrósł i zwarł okrywę, potem umiarkowanie, znosi krótką suszę w cieniu.",
+    "critical_phase": "Pierwszy sezon — musi zwrzeć okrywę zanim wejdą chwasty.",
+    "notes": "Zimozielona okrywa pod drzewami/iglakami — 135 szt. to duża, ciągła powierzchnia, dobry kandydat pod WSPÓLNĄ linię kroplującą (rozstaw jak podłoże piaszczyste ~20-30 cm).",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "bluszcz": {
+    "icon": "🍃", "lp": 19, "name": "Bluszcz pospolity", "latin": "Hedera helix",
+    "qty_plan": 6, "sun": "cień / półcień", "water_tier": "niskie", "zone_hint": "reczne",
+    "water": "Regularnie tylko po posadzeniu, potem bardzo odporny na suszę w cieniu.",
+    "critical_phase": "Pierwszy sezon po posadzeniu.",
+    "notes": "Pinący/okrywowy — jeśli ma piąć się po murku/ogrodzeniu, docelowo prawie nie wymaga podlewania.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "kostrzewa_gautiera": {
+    "icon": "🌾", "lp": 20, "name": "Kostrzewa Gautiera", "latin": "Festuca gautieri",
+    "qty_plan": 60, "sun": "słońce / półcień", "water_tier": "niskie", "zone_hint": "reczne",
+    "water": "Trawa okrywowa, sucholubna po ukorzenieniu — podlewać oszczędnie, wymaga dobrego drenażu.",
+    "critical_phase": "Pierwszy sezon po posadzeniu.",
+    "notes": "Zimozielona, zwarta, dobra na skarpy/obrzeża.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "kosmatka": {
+    "icon": "🌾", "lp": 21, "name": "Kosmatka śnieżna", "latin": "Luzula nivea",
+    "qty_plan": 10, "sun": "półcień / cień", "water_tier": "srednie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Preferuje glebę wilgotną, w cieniu drzew — nie dopuszczać do długiego przesychania.",
+    "critical_phase": "Susza letnia w miejscach osłoniętych od deszczu (pod okapem drzew).",
+    "notes": "Trawa leśna/cienista, biało kwitnąca wiosną.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "jodla_koreanska": {
+    "icon": "🌲", "lp": 22, "name": "Jodła koreańska 'Tundra'", "latin": "Abies koreana 'Tundra'",
+    "qty_plan": 5, "sun": "słońce / półcień", "water_tier": "srednie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Regularnie pierwsze 2-3 sezony, potem umiarkowanie — unikać zarówno suszy jak i zastoin wody.",
+    "critical_phase": "Pierwsze lata po posadzeniu.",
+    "notes": "Odmiana karłowa, zwarta — popularna jako akcent w rabacie iglakowej.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "swierk_echiniformis": {
+    "icon": "🌲", "lp": 23, "name": "Świerk pospolity 'Echiniformis'", "latin": "Picea abies 'Echiniformis'",
+    "qty_plan": 2, "sun": "pełne słońce / półcień", "water_tier": "srednie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Regularnie pierwsze sezony, potem umiarkowanie.",
+    "critical_phase": "Pierwsze lata po posadzeniu.",
+    "notes": "Odmiana karłowa o zaokrąglonym pokroju do ok. 1 m szerokości — bardzo wolno rosnąca, niskopielęgnacyjna.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "turzyca": {
+    "icon": "🌾", "lp": 24, "name": "Turzyca wiosenna 'The Beatles'", "latin": "Carex caryophyllea 'The Beatles'",
+    "qty_plan": 22, "sun": "słońce / półcień", "water_tier": "srednie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Regularnie pierwszy sezon, potem umiarkowanie — nie lubi długiego przesuszenia.",
+    "critical_phase": "Pierwszy sezon po posadzeniu.",
+    "notes": "Odmiana o kulistym, zwartym pokroju, śr. 30-40 cm.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "aster": {
+    "icon": "🌼", "lp": 25, "name": "Aster krzaczasty", "latin": "Aster dumosus",
+    "qty_plan": 9, "sun": "pełne słońce", "water_tier": "srednie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Regularnie, zwłaszcza w okresie kwitnienia (późne lato/jesień) — susza skraca kwitnienie.",
+    "critical_phase": "Sierpień-październik (kwitnienie, białe kwiaty wg projektu).",
+    "notes": "Bylina — przyciąć nisko po przekwitnięciu/wczesną wiosną.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "trzeslica": {
+    "icon": "🌾", "lp": 26, "name": "Trzęślica modra 'Moorhexe'", "latin": "Molinia caerulea 'Moorhexe'",
+    "qty_plan": 7, "sun": "słońce / półcień", "water_tier": "srednie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Preferuje glebę średnio wilgotną — nie dopuszczać do długiego przesychania.",
+    "critical_phase": "Pierwszy sezon po posadzeniu.",
+    "notes": "Trawa ozdobna, zwarty pokrój.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "drzaczka": {
+    "icon": "🌾", "lp": 27, "name": "Drżączka średnia", "latin": "Briza media",
+    "qty_plan": 18, "sun": "słońce / półcień", "water_tier": "niskie", "zone_hint": "reczne",
+    "water": "Trawa łąkowa, odporna na suszę po ukorzenieniu — podlewać oszczędnie.",
+    "critical_phase": "Pierwszy sezon po posadzeniu.",
+    "notes": "Charakterystyczne zwisające, grzechoczące kłoski — efektowna w naturalistycznych rabatach traw.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "trzcinnik": {
+    "icon": "🌾", "lp": 28, "name": "Trzcinnik ostrokwiatowy 'Karl Foerster'", "latin": "Calamagrostis x acutiflora 'Karl Foerster'",
+    "qty_plan": 11, "sun": "pełne słońce / półcień", "water_tier": "srednie", "zone_hint": "kroplowanie_projektowana",
+    "water": "Regularnie pierwszy sezon, potem umiarkowanie — znosi trochę więcej wilgoci niż typowe trawy ozdobne.",
+    "critical_phase": "Pierwszy sezon po posadzeniu.",
+    "notes": "Wysoka, wyprostowana trawa strukturalna — nie rozsiewa się samodzielnie (odmiana sterylna), łatwa w utrzymaniu.",
+    "season_notes": {}, "source": "Plansza 3_Zestawienie roślinności.pdf (OMI studio, XI 2024) + wiedza ogólna"
+  },
+  "pomidor": {
+    "icon": "🍅", "name": "Pomidor", "latin": "Solanum lycopersicum",
+    "sun": "pełne słońce", "water_tier": "wysokie", "zone_hint": "kroplowanie",
+    "water": "Donica: ~0,5–1 l/dzień. Grunt: ~4 l/roślinę co 2–4 dni w suszę. Kroplowniki co 30 cm.",
+    "critical_phase": "Kwitnienie i zawiązywanie owoców — wahania wilgotności = pękanie owoców i sucha zgnilizna wierzchołkowa.",
+    "notes": "WYŁĄCZNIE kropelkowo, nigdy zraszaniem — mokre liście = zaraza ziemniaczana, szara pleśń. Podlewać w dzień, nie w nocy.",
+    "season_notes": {
+      "jesien": "Od września ogranicz podlewanie do RAZ W TYGODNIU — lekkie przesuszenie zwiększa zawartość cukrów i przyspiesza dojrzewanie."
+    },
+    "source": "docs/agrotechnika.md"
+  },
+  "ogorek": {
+    "icon": "🥒", "name": "Ogórek", "latin": "Cucumis sativus",
+    "sun": "pełne słońce / półcień", "water_tier": "wysokie", "zone_hint": "kroplowanie",
+    "water": "~3–3,5 mm/dzień; 10–15 mm co 3–5 dni.",
+    "critical_phase": "Owocowanie.",
+    "notes": "Korzenie płytkie (~30 cm). Drip pozwala podlewać o dowolnej porze bez ryzyka grzybów — w przeciwieństwie do zraszania.",
+    "season_notes": {}, "source": "docs/agrotechnika.md"
+  },
+  "pietruszka": {
+    "icon": "🌿", "name": "Pietruszka", "latin": "Petroselinum crispum",
+    "sun": "słońce / półcień", "water_tier": "srednie", "zone_hint": "kroplowanie",
+    "water": "25–35 mm/m² na dawkę.",
+    "critical_phase": "Kiełkowanie/wschody; przyrost korzeni VII-IX.",
+    "notes": "Emitery co 20 cm. Rozważyć podlewanie podpowierzchniowe (5-7 cm głębokości).",
+    "season_notes": {}, "source": "docs/agrotechnika.md"
+  },
+  "ziola": {
+    "icon": "🌿", "name": "Koperek / zioła liściowe", "latin": "Anethum graveolens i in.",
+    "sun": "słońce", "water_tier": "srednie", "zone_hint": "kroplowanie",
+    "water": "10–15 mm co 2-3 dni.",
+    "critical_phase": "Cały okres — płytkie korzenie, dużo transpiracji.",
+    "notes": "Emitery co 20 cm, blisko rzędów.",
+    "season_notes": {}, "source": "docs/agrotechnika.md"
+  },
+  "korzeniowe_rzedowe": {
+    "icon": "🥕", "name": "Marchew / burak / pietruszka korzeniowa / pasternak", "latin": "-",
+    "sun": "słońce", "water_tier": "srednie", "zone_hint": "statyki",
+    "water": "Wg fazy wzrostu, regularnie, gleba nie może przesychać przy wschodach.",
+    "critical_phase": "Kiełkowanie/wschody.",
+    "notes": "Zraszanie OK przy gęstym siewie, ale WYŁĄCZNIE rano, żeby liście obeschły przed nocą (mączniak/septorioza). Alternatywa: drip podpowierzchniowy.",
+    "season_notes": {}, "source": "docs/agrotechnika.md"
+  },
+  "trawnik": {
+    "icon": "🟩", "name": "Trawnik", "latin": "-",
+    "sun": "słońce", "water_tier": "srednie", "zone_hint": "rotatory",
+    "water": "Latem wg zapotrzebowania tygodniowego (patrz panel nawadniania — kalkulator zużycia wody).",
+    "critical_phase": "Susza letnia.",
+    "notes": "Rain Bird 5004 (rotatory, ~11,4 mm/h potwierdzone catch-cup) lub HE-VAN 15/180° (statyki, ~9,1 mm/h potwierdzone).",
+    "season_notes": {}, "source": "docs/agrotechnika.md"
+  },
+  "inne": {
+    "icon": "🌱", "name": "Inna roślina (własna nazwa)", "latin": "-",
+    "sun": "sprawdź indywidualnie", "water_tier": "srednie", "zone_hint": "reczne",
+    "water": "Brak danych w bazie — wpisz obserwacje w polu notatek albo użyj przycisku \"Analizuj zdjęcie (AI)\".",
+    "critical_phase": "",
+    "notes": "Ta pozycja nie ma jeszcze wpisu w bazie.",
+    "season_notes": {}, "source": ""
+  }
+}

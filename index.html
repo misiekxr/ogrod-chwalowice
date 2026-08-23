@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ogród</title>
+<meta name="theme-color" content="#4f9a3f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Ogród">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="vendor/leaflet.css" />
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21c0-5 0-9 0-11M12 10C12 5 8 3 4 3c0 5 3 8 8 8Zm0 0c0-4 3-6 7-6 0 4-2 7-7 7Z" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><h1>Ogród</h1><div class="sub">Projekt zieleni — Chwałowice (offline, dane w telefonie)</div></div>
+  <div class="pill" id="pill"><span class="d"></span><span id="pillTxt">—</span></div>
+</header>
+
+<nav class="tabs">
+  <button data-view="plan" class="active">Plan ogrodu</button>
+  <button data-view="pogoda">Pogoda i pora roku</button>
+  <button data-view="rosliny">Rośliny</button>
+  <button data-view="nawadnianie">Propozycja nawadniania</button>
+</nav>
+
+<main>
+
+  <section id="view-plan" class="view active">
+    <div id="planCard" class="card" style="display:none">
+      <div class="btn-row" style="justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div class="d" style="margin:0">Kliknij na planie, żeby dodać posadzoną roślinę.</div>
+        <button class="btn ghost" id="changePlanBtn">Zmień plan</button>
+      </div>
+      <div id="mapWrap"><div id="map"></div></div>
+    </div>
+
+    <div id="uploadCard" class="card">
+      <h2>Wgraj plan (PZT / projekt zieleni)</h2>
+      <div class="d">Gotowe plansze z projektu OMI studio (Chwałowice) albo własny plik. Zapisywane lokalnie w tym telefonie/przeglądarce.</div>
+      <div class="preset-list" id="presetList"></div>
+      <div class="field-row">
+        <label>...albo wgraj własny obraz planu (PNG/JPG)</label>
+        <input type="file" id="planFileInput" accept="image/*">
+      </div>
+    </div>
+  </section>
+
+  <section id="view-pogoda" class="view">
+    <div class="card">
+      <h2>Pogoda teraz</h2>
+      <div id="wxContent" class="muted">Ładowanie…</div>
+    </div>
+    <div class="card">
+      <h2>Wskazówki sezonowe dla posadzonych roślin</h2>
+      <div id="seasonTips" class="muted">Brak jeszcze dodanych roślin.</div>
+    </div>
+  </section>
+
+  <section id="view-rosliny" class="view">
+    <div class="card">
+      <div class="btn-row" style="justify-content:space-between;align-items:center;margin-bottom:10px">
+        <h2 style="margin:0">Lista roślin</h2>
+        <div style="display:flex;gap:14px;align-items:center">
+          <a class="exportlink" href="#" id="csvLink">Eksport CSV ⬇</a>
+          <a class="exportlink" href="#" id="backupLink">Kopia zapasowa ⬇</a>
+          <a class="exportlink" href="#" id="restoreLink">Przywróć ⬆</a>
+          <input type="file" id="restoreInput" accept="application/json" style="display:none">
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="plist" id="plantTable">
+          <thead><tr><th>Gatunek</th><th>Szt.</th><th>Strefa</th><th>Posadzono</th><th>Zdjęcie</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-nawadnianie" class="view">
+    <div class="card">
+      <div class="btn-row" style="justify-content:space-between;align-items:center;margin-bottom:4px">
+        <h2 style="margin:0">🧠 Analiza ogrodu (AI)</h2>
+      </div>
+      <div class="d">Wysyła plan i listę posadzonych roślin do AI (Gemini) i prosi o konkretne uwagi — konflikty stref, luki względem projektu OMI studio, grupowanie nawadniania.</div>
+      <button class="btn grass" id="analyzeGardenBtn" style="width:100%">Poproś AI o analizę ogrodu</button>
+      <div id="gardenAnalysisContent" style="margin-top:14px"></div>
+    </div>
+    <div class="card">
+      <h2>Propozycja nawadniania kropelkowego</h2>
+      <div id="irrigationContent" class="muted">Ładowanie…</div>
+    </div>
+  </section>
+
+</main>
+
+<div class="overlay" id="sheetOverlay">
+  <div class="sheet">
+    <h3 id="sheetTitle">Dodaj roślinę</h3>
+    <form id="plantForm">
+      <div class="field-row">
+        <label>Gatunek</label>
+        <select id="fSpecies"></select>
+      </div>
+      <div class="field-row">
+        <label>Własna nazwa / opis (opcjonalnie)</label>
+        <input type="text" id="fCustomName" placeholder="np. przy tarasie, lewy róg">
+      </div>
+      <div id="fCareBox"></div>
+      <div class="field-row">
+        <label>Ilość sztuk</label>
+        <input type="number" id="fQty" min="1" value="1">
+      </div>
+      <div class="field-row">
+        <label>Strefa podlewania</label>
+        <div class="zone-tags" id="fZoneTags">
+          <button type="button" data-zone="rotatory">Rotatory (trawnik)</button>
+          <button type="button" data-zone="statyki">Statyki (trawnik)</button>
+          <button type="button" data-zone="kroplowanie">Kroplowanie (pomidory)</button>
+          <button type="button" data-zone="kroplowanie_projektowana">Kroplowanie — projektowane</button>
+          <button type="button" data-zone="reczne">Ręczne / brak</button>
+        </div>
+      </div>
+      <div class="field-row">
+        <label>Data posadzenia</label>
+        <input type="date" id="fPlantedDate">
+      </div>
+      <div class="field-row">
+        <label>Zdjęcie</label>
+        <input type="file" id="fPhoto" accept="image/*" capture="environment">
+        <div id="fPhotoPreview"></div>
+        <button type="button" class="btn ghost" id="analyzeFormBtn" style="display:none;margin-top:8px;width:100%">🔎 Analizuj zdjęcie (AI)</button>
+      </div>
+      <div class="field-row">
+        <label>Notatki</label>
+        <textarea id="fNotes" placeholder="obserwacje, stan rośliny..."></textarea>
+      </div>
+      <div class="rowb">
+        <button type="button" class="btn ghost" id="sheetCancel">Anuluj</button>
+        <button type="submit" class="btn grass" id="sheetSave">Zapisz</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="overlay" id="detailOverlay">
+  <div class="sheet" id="detailContent"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="vendor/idb.js"></script>
+<script src="vendor/leaflet.js"></script>
+<script src="app.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
